@@ -1,5 +1,5 @@
 public class KiwerDriver implements StockerBrokerDriver {
-    private final KiwerAPI kiwerAPI = new KiwerAPI();
+    private KiwerAPI kiwerAPI = new KiwerAPI();
 
     public KiwerDriver() {
         this.kiwerAPI = new KiwerAPI();
