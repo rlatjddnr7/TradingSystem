@@ -11,8 +11,8 @@ public class KiwerDriver implements StockerBrockerDriver {
     }
 
     @Override
-    public void buy(String code, int count, int price) {
-
+    public void buy(String stockCode, int price, int count) {
+        kiwerAPI.buy(stockCode, count, price);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class KiwerDriver implements StockerBrockerDriver {
     }
 
     @Override
-    public int getPrice(String code) {
-        return 0;
+    public int getPrice(String stockCode) {
+        return kiwerAPI.currentPrice(stockCode);
     }
 }
