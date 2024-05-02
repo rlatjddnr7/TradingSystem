@@ -1,4 +1,5 @@
 public class KiwerDriver implements StockerBrockerDriver {
+
     private final KiwerAPI kiwerAPI;
 
     public KiwerDriver() {
@@ -6,22 +7,22 @@ public class KiwerDriver implements StockerBrockerDriver {
     }
 
     @Override
-    public void login(String id, String pass) {
+    public void login(String ID, String password) {
 
     }
 
     @Override
-    public void buy(String code, int count, int price) {
+    public void buy(String stockCode, int price, int count) {
         kiwerAPI.buy(code, count, price);
     }
 
     @Override
-    public void sell(String code, int count, int price) {
+    public void sell(String stockCode, int price, int count) {
 
     }
 
     @Override
-    public int getPrice(String code) {
-        return 0;
+    public int getPrice(String stockCode) {
+        return kiwerAPI.currentPrice(stockCode);
     }
 }

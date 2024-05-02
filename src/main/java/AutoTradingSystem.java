@@ -1,7 +1,14 @@
 public class AutoTradingSystem {
-    StockerBrockerDriver driver;
 
-    void buy(String code, int count, int price) {
+    private StockerBrockerDriver stockerBrockerDriver;
+
+    public void buy(String code, int count, int price) {
         driver.buy(code, count, price);
     }
+    
+
+    public int getPrice(String stockCode){
+        return stockerBrockerDriver.getPrice(stockCode);
+    }
 }
+

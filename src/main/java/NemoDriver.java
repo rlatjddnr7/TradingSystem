@@ -1,4 +1,5 @@
 public class NemoDriver implements StockerBrockerDriver {
+
     private final NemoAPI nemoAPI;
 
     public NemoDriver() {
@@ -21,7 +22,11 @@ public class NemoDriver implements StockerBrockerDriver {
     }
 
     @Override
-    public int getPrice(String code) {
-        return 0;
+    public int getPrice(String stockCode) {
+        try {
+            return nemoAPI.getMarketPrice(stockCode, 0);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
