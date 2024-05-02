@@ -13,6 +13,9 @@ public class AutoTradingSystem {
 
     public void sell(StockVO stockVO) {
         stockerBrokerDriver.sell(stockVO);
+
+    public void selectStockBroker(StockerBrokerDriver stockerBrokerDriver){
+        this.stockerBrokerDriver = stockerBrokerDriver;
     }
 
     public void login(String id, String pass) {
@@ -27,5 +30,14 @@ public class AutoTradingSystem {
 
     public void buy(String code, int count, int price) {
         stockerBrokerDriver.buy(code, count, price);
+    }
+
+    public void buyNiceTiming (String code, int price) throws InterruptedException {
+        int checkFirstPrice = stockerBrokerDriver.getPrice(code);
+        Thread.sleep(1);
+        int checkSecondPrice = stockerBrokerDriver.getPrice(code);
+        if (checkSecondPrice > checkFirstPrice) {
+            stockerBrokerDriver.buy(code, checkSecondPrice / price, price);
+        }
     }
 }
