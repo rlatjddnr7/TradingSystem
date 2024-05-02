@@ -1,4 +1,4 @@
-public class MockDriver implements StockerBrockerDriver {
+public class MockDriver implements StockerBrokerDriver {
 
     @Override
     public void login(String id, String pass) {

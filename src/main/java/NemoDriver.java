@@ -1,9 +1,5 @@
-public class NemoDriver implements StockerBrockerDriver {
-    private final NemoAPI nemoAPI;
-
-    public NemoDriver() {
-        this.nemoAPI = new NemoAPI();
-    }
+public class NemoDriver implements StockerBrokerDriver {
+    private final NemoAPI nemoAPI = new NemoAPI();
 
     @Override
     public void login(String id, String pass) {
@@ -17,7 +13,7 @@ public class NemoDriver implements StockerBrockerDriver {
 
     @Override
     public void sell(String code, int count, int price) {
-
+        nemoAPI.sellingStock(code, count, price);
     }
 
     @Override

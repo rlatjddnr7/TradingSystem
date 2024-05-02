@@ -1,5 +1,5 @@
-public class KiwerDriver implements StockerBrockerDriver {
-    private final KiwerAPI kiwerAPI;
+public class KiwerDriver implements StockerBrokerDriver {
+    private final KiwerAPI kiwerAPI = new KiwerAPI();
 
     public KiwerDriver() {
         this.kiwerAPI = new KiwerAPI();
@@ -17,7 +17,7 @@ public class KiwerDriver implements StockerBrockerDriver {
 
     @Override
     public void sell(String code, int count, int price) {
-
+        kiwerAPI.sell(code, price, count);
     }
 
     @Override

@@ -1,11 +1,18 @@
 import com.sun.xml.internal.ws.util.StringUtils;
 
 public class AutoTradingSystem {
-    private StockerBrockerDriver stockerBrockerDriver;
+    private StockerBrokerDriver stockerBrokerDriver;
+
+    public void selectStockBroker(String stockBroker){
+        if(stockBroker.equals("Kiwer"))
+            this.stockerBrokerDriver = new KiwerDriver();
+        else if(stockBroker.equals("Nemo"))
+            this.stockerBrokerDriver = new NemoDriver();
+    }
 
     public void login(String id, String pass) {
-        if (this.stockerBrockerDriver != null && isCorrectAuthData(id, pass)) {
-            stockerBrockerDriver.login(id, pass);
+        if (this.stockerBrokerDriver != null && isCorrectAuthData(id, pass)) {
+            stockerBrokerDriver.login(id, pass);
         }
     }
 
@@ -14,10 +21,10 @@ public class AutoTradingSystem {
     }
 
     public void buy(String code, int count, int price) {
-        stockerBrockerDriver.buy(code, count, price);
+        stockerBrokerDriver.buy(code, count, price);
     }
-    
+
     public int getPrice(String stockCode){
-        return stockerBrockerDriver.getPrice(stockCode);
+        return stockerBrokerDriver.getPrice(stockCode);
     }
 }
