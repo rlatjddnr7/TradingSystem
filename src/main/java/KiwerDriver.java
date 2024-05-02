@@ -24,4 +24,13 @@ public class KiwerDriver implements StockerBrokerDriver {
     public int getPrice(String stockCode) {
         return kiwerAPI.currentPrice(stockCode);
     }
+
+    @Override
+    public void buyNiceTiming(String code, int price) {
+
+    }
+
+    @Override
+    public void sellNiceTiming(String code, int count) {
+    }
 }

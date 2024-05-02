@@ -24,4 +24,13 @@ public class NemoDriver implements StockerBrokerDriver {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void buyNiceTiming(String code, int price) {
+
+    }
+
+    @Override
+    public void sellNiceTiming(String code, int count) {
+    }
 }

@@ -46,8 +46,9 @@ class unitTest {
         doReturn(100).when(mockDriver).getPrice("code");
         Thread.sleep(1);
         doReturn(200).when(mockDriver).getPrice("code");
+        mockDriver.buyNiceTiming("code", 200);
 
-        verify(mockDriver, times(1)).buy("code", 2, 3);
+        verify(mockDriver, times(1)).buy("code", 2, 200);
     }
 
     @Test
@@ -55,8 +56,9 @@ class unitTest {
         doReturn(200).when(mockDriver).getPrice("code");
         Thread.sleep(1);
         doReturn(100).when(mockDriver).getPrice("code");
+        mockDriver.buyNiceTiming("code", 200);
 
-        verify(mockDriver, times(1)).sell("code", 2, 3);
+        verify(mockDriver, times(1)).sell("code", 2, 100);
 
     }
 }
