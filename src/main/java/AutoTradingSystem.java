@@ -71,4 +71,13 @@ public class AutoTradingSystem {
 
         return true;
     }
+  
+    public void buyNiceTiming (String code, int price) throws InterruptedException {
+        int checkFirstPrice = stockerBrokerDriver.getPrice(code);
+        Thread.sleep(1);
+        int checkSecondPrice = stockerBrokerDriver.getPrice(code);
+        if (checkSecondPrice > checkFirstPrice) {
+            stockerBrokerDriver.buy(code, checkSecondPrice / price, price);
+        }
+    }
 }

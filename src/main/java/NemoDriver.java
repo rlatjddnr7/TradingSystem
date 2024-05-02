@@ -1,6 +1,5 @@
 
 public class NemoDriver implements StockerBrokerDriver {
-
     private final NemoAPI nemoAPI = new NemoAPI();
 
     @Override
@@ -14,7 +13,11 @@ public class NemoDriver implements StockerBrokerDriver {
     }
 
     @Override
-    public void sell(String code, int count, int price) {
+    public void sell(StockVO stockVO) {
+        String code = stockVO.getCode();
+        int price = stockVO.getPrice();
+        int count = stockVO.getCount();
+
         nemoAPI.sellingStock(code, count, price);
     }
 
@@ -25,5 +28,14 @@ public class NemoDriver implements StockerBrokerDriver {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void buyNiceTiming(String code, int price) {
+
+    }
+
+    @Override
+    public void sellNiceTiming(String code, int count) {
     }
 }

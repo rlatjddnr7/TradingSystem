@@ -11,7 +11,7 @@ public class MockDriver implements StockerBrokerDriver {
     }
 
     @Override
-    public void sell(String code, int count, int price) {
+    public void sell(StockVO stockVO) {
 
     }
 
@@ -19,4 +19,15 @@ public class MockDriver implements StockerBrokerDriver {
     public int getPrice(String code) {
         return 0;
     }
+
+    @Override
+    public void buyNiceTiming(String code, int price) {
+
+    }
+
+    @Override
+    public void sellNiceTiming(String code, int count) {
+    }
+
+
 }
