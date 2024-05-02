@@ -4,8 +4,8 @@ public class AutoTradingSystem {
     private StockerBrockerDriver stockerBrockerDriver;
 
     public void login(String id, String pass) {
-        if (this.driver != null && isCorrectAuthData(id, pass)) {
-            driver.login(id, pass);
+        if (this.stockerBrockerDriver != null && isCorrectAuthData(id, pass)) {
+            stockerBrockerDriver.login(id, pass);
         }
     }
 
@@ -14,7 +14,7 @@ public class AutoTradingSystem {
     }
 
     public void buy(String code, int count, int price) {
-        driver.buy(code, count, price);
+        stockerBrockerDriver.buy(code, count, price);
     }
     
     public int getPrice(String stockCode){
