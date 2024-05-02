@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.mockito.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +31,7 @@ class unitTest {
     }
 
     @Test
-    void selectStockBrokerTest(){
+    void selectStockBrokerTest() {
         StockerBrokerDriver driver;
         driver = StockBrokerFactory.get("Kiwer");
         assertThat(driver.getClass()).isNotNull().isEqualTo(KiwerDriver.class);
@@ -59,7 +60,7 @@ class unitTest {
                 .price(2)
                 .count(3);
 
-        assertDoesNotThrow(()-> {
+        assertDoesNotThrow(() -> {
             mockDriver.sell(stockVO);
         });
     }
@@ -70,7 +71,7 @@ class unitTest {
     }
 
     @Test
-    void sellNiceTimingTestSuccess(){
+    void sellNiceTimingTestSuccess() {
         StockerBrokerDriver mockDriver = mock(MockDriver.class);
         autoTradingSystem.selectStockBroker(mockDriver);
 
@@ -91,7 +92,7 @@ class unitTest {
     }
 
     @Test
-    void sellNiceTimingTestFail(){
+    void sellNiceTimingTestFail() {
         StockerBrokerDriver mockDriver = mock(MockDriver.class);
         autoTradingSystem.selectStockBroker(mockDriver);
 
@@ -110,7 +111,7 @@ class unitTest {
         assertThat(autoTradingSystem.sellNiceTiming("code", 1))
                 .isEqualTo(false);
     }
-  
+
     void buyNiceTimingTest() throws InterruptedException {
         AutoTradingSystem autoTradingSystem = spy(AutoTradingSystem.class);
         MockDriver mockDriver = mock(MockDriver.class);
@@ -125,15 +126,5 @@ class unitTest {
 
         verify(mockDriver, times(2)).getPrice(code);
         verify(mockDriver, times(1)).buy(code, checkSecondPrice / myPrice, myPrice);
-    }
-
-    @Test
-    void sellNiceTimingTest() throws InterruptedException {
-        doReturn(200).when(mockDriver).getPrice("code");
-        Thread.sleep(1);
-        doReturn(100).when(mockDriver).getPrice("code");
-        mockDriver.buyNiceTiming("code", 200);
-
-        verify(mockDriver, times(1)).sell("code", 2, 100);
     }
 }

@@ -2,22 +2,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AutoTradingSystem {
-    private StockerBrokerDriver stockerBrokerDriver;
+    private StockerBrokerDriver stockBrokerDriver;
     private final HashMap<String, ArrayList<Integer>> priceTrendMap = new HashMap<>();
 
     public void selectStockBroker(String stockBroker) {
-        if (stockBroker.equals("Kiwer"))
-            this.stockerBrokerDriver = new KiwerDriver();
-        else if (stockBroker.equals("Nemo"))
-            this.stockerBrokerDriver = new NemoDriver();
+        stockBrokerDriver = StockBrokerFactory.get(stockBroker);
     }
 
-    public void selectStockBroker(StockerBrokerDriver stockBrokerDriver){
-        this.stockerBrokerDriver = stockBrokerDriver;
+    public void selectStockBroker(StockerBrokerDriver stockBrokerDriver) {
+        this.stockBrokerDriver = stockBrokerDriver;
     }
 
     public int getPrice(String stockCode) {
-        int price = stockerBrokerDriver.getPrice(stockCode);
+        int price = stockBrokerDriver.getPrice(stockCode);
         updatePriceTrend(stockCode, price);
 
         return price;
@@ -31,12 +28,17 @@ public class AutoTradingSystem {
     }
 
     public void sell(String code, int count, int price) {
-        stockerBrokerDriver.sell(code, count, price);
+        StockVO stockVO = StockVO.builder()
+                .code(code)
+                .count(count)
+                .price(price)
+                .build();
+        stockBrokerDriver.sell(stockVO);
     }
 
     public void login(String id, String pass) {
-        if (stockerBrokerDriver != null && isCorrectAuthData(id, pass)) {
-            stockerBrokerDriver.login(id, pass);
+        if (stockBrokerDriver != null && isCorrectAuthData(id, pass)) {
+            stockBrokerDriver.login(id, pass);
         }
     }
 
@@ -45,7 +47,7 @@ public class AutoTradingSystem {
     }
 
     public void buy(String code, int count, int price) {
-        stockerBrokerDriver.buy(code, count, price);
+        stockBrokerDriver.buy(code, count, price);
     }
 
     public boolean sellNiceTiming(String stockCode, int count) {
@@ -71,13 +73,13 @@ public class AutoTradingSystem {
 
         return true;
     }
-  
-    public void buyNiceTiming (String code, int price) throws InterruptedException {
-        int checkFirstPrice = stockerBrokerDriver.getPrice(code);
+
+    public void buyNiceTiming(String code, int price) throws InterruptedException {
+        int checkFirstPrice = stockBrokerDriver.getPrice(code);
         Thread.sleep(1);
-        int checkSecondPrice = stockerBrokerDriver.getPrice(code);
+        int checkSecondPrice = stockBrokerDriver.getPrice(code);
         if (checkSecondPrice > checkFirstPrice) {
-            stockerBrokerDriver.buy(code, checkSecondPrice / price, price);
+            stockBrokerDriver.buy(code, checkSecondPrice / price, price);
         }
     }
 }

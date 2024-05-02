@@ -33,4 +33,8 @@ public class StockVO {
         this.price = price;
         return this;
     }
+
+    public StockVO build(){
+        return this;
+    }
 }
