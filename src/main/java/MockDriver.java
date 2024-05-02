@@ -11,7 +11,7 @@ public class MockDriver implements StockerBrokerDriver {
     }
 
     @Override
-    public void sell(String code, int count, int price) {
+    public void sell(StockVO stockVO) {
 
     }
 

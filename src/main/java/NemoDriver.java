@@ -1,3 +1,4 @@
+
 public class NemoDriver implements StockerBrokerDriver {
     private final NemoAPI nemoAPI = new NemoAPI();
 
@@ -12,7 +13,11 @@ public class NemoDriver implements StockerBrokerDriver {
     }
 
     @Override
-    public void sell(String code, int count, int price) {
+    public void sell(StockVO stockVO) {
+        String code = stockVO.getCode();
+        int price = stockVO.getPrice();
+        int count = stockVO.getCount();
+
         nemoAPI.sellingStock(code, count, price);
     }
 
