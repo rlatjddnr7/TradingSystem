@@ -1,5 +1,4 @@
 public class NemoDriver implements StockerBrockerDriver {
-
     private final NemoAPI nemoAPI;
 
     public NemoDriver() {
@@ -8,7 +7,7 @@ public class NemoDriver implements StockerBrockerDriver {
 
     @Override
     public void login(String id, String pass) {
-
+        nemoAPI.certification(id, pass);
     }
 
     @Override
