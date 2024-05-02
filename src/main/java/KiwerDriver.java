@@ -1,9 +1,6 @@
-public class KiwerDriver implements StockerBrockerDriver {
-    private final KiwerAPI kiwerAPI;
 
-    public KiwerDriver() {
-        this.kiwerAPI = new KiwerAPI();
-    }
+public class KiwerDriver implements StockerBrokerDriver {
+    private final KiwerAPI kiwerAPI = new KiwerAPI();
 
     @Override
     public void login(String id, String pass) {
@@ -16,12 +13,12 @@ public class KiwerDriver implements StockerBrockerDriver {
     }
 
     @Override
-    public void sell(String code, int count, int price) {
-
+    public void sell(String stockCode, int price, int count) {
+        kiwerAPI.sell(stockCode, price, count);
+        
     }
 
     @Override
     public int getPrice(String stockCode) {
         return kiwerAPI.currentPrice(stockCode);
     }
-}
