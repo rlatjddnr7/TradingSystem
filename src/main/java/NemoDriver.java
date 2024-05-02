@@ -13,7 +13,7 @@ public class NemoDriver implements StockerBrockerDriver {
 
     @Override
     public void buy(String code, int count, int price) {
-
+        nemoAPI.purchasingStock(code, count, price);
     }
 
     @Override
