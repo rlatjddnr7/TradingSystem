@@ -1,6 +1,5 @@
 
 public class NemoDriver implements StockerBrokerDriver {
-
     private final NemoAPI nemoAPI = new NemoAPI();
 
     @Override
