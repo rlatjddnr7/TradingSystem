@@ -29,7 +29,12 @@ class unitTest {
 
     @Test
     void sellTest() {
-        mockDriver.sell("code", 2, 3);
+        StockVO stockVO = StockVO.builder()
+                .code("code")
+                .price(2)
+                .count(3);
+
+        mockDriver.sell(stockVO);
     }
 
     @Test
